@@ -1,0 +1,109 @@
+extends control
+
+@onready var InsideData_1 = $VBoxContainer/VBoxContainer/HBoxContainer2/OptionButton1
+@onready var InsideData_2 = $VBoxContainer/VBoxContainer/HBoxContainer2/OptionButton2
+@onready var InsideData_3 = $VBoxContainer/VBoxContainer/HBoxContainer2/OptionButton3
+@onready var InsideData_4 = $VBoxContainer/VBoxContainer/HBoxContainer2/OptionButton4
+
+@onready var json_content = $VBoxContainer/JSON_Content
+
+var SaveID : String
+var SaveNumber : String
+
+var data = JSON.parse_string(FileAccess.open("res://Data.json",FileAccess.READ).get_as_text())
+
+func _on_toggle_pressed():
+	json_content.text = "Toggled"
+	stri = str(json_content.text)
+
+
+func _on_togglesave_pressed():
+	var file = JSON.parse_string(FileAccess.open("res://Data.json",FileAccess.READ).get_as_text())
+	#file.close()
+	var data = file
+	
+	data[SaveID][SaveNumber] = stri
+	
+	file = FileAccess.open("res://Data.json",FileAccess.WRITE)
+	file.store_string(JSON.stringify(data,"",true))
+	#file.close()
+	#json_content.text = "toggleds"
+
+func save_value(Name,Number):
+	SaveID = Name
+	SaveNumber = Number
+
+func _on_option_button_1_item_selected(index):
+	match index:
+		0:
+			InsideData_2.visible = true
+			InsideData_3.visible = false
+			InsideData_4.visible = false
+		1:
+			InsideData_3.visible = true
+			InsideData_2.visible = false
+			InsideData_4.visible = false
+		2:
+			InsideData_4.visible = true
+			InsideData_2.visible = false
+			InsideData_3.visible = false
+
+
+func _on_option_button_2_item_selected(index):
+	match index:
+		0:
+			json_content.text = str(data[InsideData_1.get_item_text(0)]["1"])
+			save_value(InsideData_1.get_item_text(0),"1")
+			print(str(json_content.text))
+		1:
+			json_content.text = str(data[InsideData_1.get_item_text(0)]["2"])
+			save_value(InsideData_1.get_item_text(0),"2")
+			print(str(json_content.text))
+		2:
+			json_content.text = str(data[InsideData_1.get_item_text(0)]["3"])
+			save_value(InsideData_1.get_item_text(0),"3")
+			print(str(json_content.text))
+		3:
+			json_content.text = str(data[InsideData_1.get_item_text(0)]["4"])
+			save_value(InsideData_1.get_item_text(0),"4")
+			print(str(json_content.text))
+
+
+func _on_option_button_3_item_selected(index):
+	match index:
+		0:
+			json_content.text = str(data[InsideData_1.get_item_text(1)]["1"])
+			save_value(InsideData_1.get_item_text(1),"1")
+			print(str(json_content.text))
+		1:
+			json_content.text = str(data[InsideData_1.get_item_text(1)]["2"])
+			save_value(InsideData_1.get_item_text(1),"2")
+			print(str(json_content.text))
+		2:
+			json_content.text = str(data[InsideData_1.get_item_text(1)]["3"])
+			save_value(InsideData_1.get_item_text(1),"3")
+			print(str(json_content.text))
+
+
+func _on_option_button_4_item_selected(index):
+	match index:
+		0:
+			json_content.text = str(data[InsideData_1.get_item_text(2)]["1"])
+			save_value(InsideData_1.get_item_text(2),"1")
+			print(str(json_content.text))
+		1:
+			json_content.text = str(data[InsideData_1.get_item_text(2)]["2"])
+			save_value(InsideData_1.get_item_text(2),"2")
+			print(str(json_content.text))
+		2:
+			json_content.text = str(data[InsideData_1.get_item_text(2)]["3"])
+			save_value(InsideData_1.get_item_text(2),"3")
+			print(str(json_content.text))
+		3:
+			json_content.text = str(data[InsideData_1.get_item_text(2)]["4"])
+			save_value(InsideData_1.get_item_text(2),"4")
+			print(str(json_content.text))
+		4:
+			json_content.text = str(data[InsideData_1.get_item_text(2)]["5"])
+			save_value(InsideData_1.get_item_text(2),"5")
+			print(str(json_content.text))
