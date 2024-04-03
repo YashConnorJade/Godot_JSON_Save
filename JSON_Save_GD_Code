@@ -9,6 +9,7 @@ extends control
 
 var SaveID : String
 var SaveNumber : String
+var stri = "True"
 
 var data = JSON.parse_string(FileAccess.open("res://Data.json",FileAccess.READ).get_as_text())
 
